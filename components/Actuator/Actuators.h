@@ -1,3 +1,9 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <tuple>
+
+using namespace std;
 
 class Actuators
 {
@@ -14,7 +20,7 @@ public:
   pair<int, int> get_agent_direction();
   void set_agent_direction(pair<int, int> agent_location);
 
-  room_direction_from_agent(pair<int, int> room_location);
+  string room_direction(pair<int, int> room_location);
   void move_to(pair<int, int> room_location);
   void shoot_at(pair<int, int> room_location);
 }

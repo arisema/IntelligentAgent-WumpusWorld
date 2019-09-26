@@ -1,3 +1,4 @@
+#include "Actuators.h"
 
 Actuators::Actuators(pair<int, int> agent_location, string agent_direction)
 {
@@ -19,6 +20,7 @@ pair<int, int> get_agent_direction()
 {
   return Actuators::agent_direction;
 }
+
 void set_agent_direction(pair<int, int> agent_location)
 {
   Actuators::agent_location = agent_location;
@@ -42,6 +44,8 @@ string get_room_direction(pair<int, int> room_location)
 void move_to(pair<int, int> room_location)
 {
   string room_direction = get_room_direction(room_location);
+  string agent_direction = get_agent_direction();
+
   pair<int, int> updated_agent_location;
   pair<int, int> updated_agent_direction
   if(room_direction == agent_direction) {
@@ -87,10 +91,13 @@ void move_to(pair<int, int> room_location)
   set_agent_direction(updated_agent_direction);
 }
 
-void move_to(pair<int, int> room_location)
+void shoot_at(pair<int, int> room_location)
 {
   string room_direction = get_room_direction(room_location);
-  pair<int, int> updated_agent_direction
+  string agent_direction = get_agent_direction();
+
+  pair<int, int> updated_agent_direction;
+
   if(room_direction == agent_direction) {
     updated_agent_location = Actuator.shoot();
     // if room direction is in the top
