@@ -29,7 +29,6 @@ void Actuators::set_agent_location(pair<int, int> agent_location)
   Actuators::agent_location = agent_location;
 }
 
-<<<<<<< HEAD
 /**
  * [get_agent_direction getter for agent_direction attribute]
  * @return [agent_direction in string format]
@@ -37,26 +36,6 @@ void Actuators::set_agent_location(pair<int, int> agent_location)
 string Actuators::get_agent_direction()
 {
   return Actuators::agent_direction;
-=======
-using namespace DataStructures;
-
-/**
- * @brief Construct a new Actuator:: Actuator object
- * 
- */
-Actuator::Actuator()
-{
-    ;
->>>>>>> master
-}
-/**
- * @brief A wrapper function that will navigate based on obtained decisions
- * 
- * @param decision Decision obtained from inference class infer function
- */
-void Actuator::actuate(Decision decision)
-{
-    //todo
 }
 
 /**

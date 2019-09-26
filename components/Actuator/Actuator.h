@@ -3,10 +3,16 @@
 #include <vector>
 #include <tuple>
 
+<<<<<<< HEAD
 using namespace std;
+=======
+#include "../../utilities/DataStructures.h"
+
+>>>>>>> master
 
 class Actuators
 {
+<<<<<<< HEAD
 private:
   pair<int, int> agent_location;
   string agent_direction;
@@ -24,3 +30,13 @@ public:
   void move_to(pair<int, int> room_location);
   void shoot_at(pair<int, int> room_location);
 };
+=======
+    public:
+        Actuator();
+        ~Actuator();
+        void actuate(DataStructures::Decision decision); //change return type to action
+};
+
+}
+#endif;
+>>>>>>> master
