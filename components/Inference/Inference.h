@@ -23,12 +23,11 @@ class Inference
     std::pair<int, int> wumpus_room;
     KnowledgeBase current_kb;
 
+  public:
+    Inference(KnowledgeBase current_kb);
     bool is_valid_position(int i, int j);
     std::vector<std::pair<int, int>> get_adjacent_rooms(std::pair<int, int> current_room);
     std::pair<int, int> find_possible_move(std::pair<int, int> current_room);
-
-  public:
-    Inference(KnowledgeBase current_kb);
     DataStructures::Decision infer(std::pair<int, int> current_room);
 };
 }
