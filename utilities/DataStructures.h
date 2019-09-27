@@ -1,4 +1,4 @@
-
+#include <tuple>
 
 namespace DataStructures{
 
@@ -27,5 +27,10 @@ namespace DataStructures{
         bool scream = false;
         bool wumpus = false;
     };
-    
+
+    struct Decision{
+      std::pair<int, int> move_to;
+      std::pair<int, int> shoot_at;
+    };
+
 }
