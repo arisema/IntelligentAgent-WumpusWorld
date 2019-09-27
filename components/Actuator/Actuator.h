@@ -2,41 +2,26 @@
 #include <string>
 #include <vector>
 #include <tuple>
-
-<<<<<<< HEAD
-using namespace std;
-=======
 #include "../../utilities/DataStructures.h"
 
->>>>>>> master
-
-class Actuators
+class Actuator
 {
-<<<<<<< HEAD
 private:
-  pair<int, int> agent_location;
-  string agent_direction;
+  std::pair<int, int> agent_location;
+  std::string agent_direction;
 
 public:
-  Actuators(pair<int, int> agent_location, string agent_direction);
+  Actuator(std::pair<int, int> agent_location, std::string agent_direction);
 
-  pair<int, int> get_agent_location();
-  void set_agent_location(pair<int, int>);
+  std::pair<int, int> get_agent_location();
+  void set_agent_location(std::pair<int, int>);
 
-  string get_agent_direction();
-  void set_agent_direction(string agent_direction);
+  std::string get_agent_direction();
+  void set_agent_direction(std::string agent_direction);
 
-  string get_room_direction(pair<int, int> room_location);
-  void move_to(pair<int, int> room_location);
-  void shoot_at(pair<int, int> room_location);
+  void actuate(DataStructures::Decision decision);
+
+  std::string get_room_direction(std::pair<int, int> room_location);
+  void move_to(std::pair<int, int> room_location);
+  void shoot_at(std::pair<int, int> room_location);
 };
-=======
-    public:
-        Actuator();
-        ~Actuator();
-        void actuate(DataStructures::Decision decision); //change return type to action
-};
-
-}
-#endif;
->>>>>>> master
