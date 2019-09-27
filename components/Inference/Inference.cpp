@@ -1,13 +1,12 @@
+#include "Inference.h"
+
 
 namespace components{
 
-#include "Inference.h"
-
-using namespace components;
 using namespace DataStructures;
 using namespace std;
 
-Inference::Inference(components::KnowledgeBase current_kb)
+Inference::Inference(KnowledgeBase current_kb)
 {
   Inference::current_kb = current_kb;
 }
