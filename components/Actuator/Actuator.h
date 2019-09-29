@@ -4,6 +4,8 @@
 #include <tuple>
 #include "../../utilities/DataStructures.h"
 
+namespace components{
+  
 class Actuator
 {
 private:
@@ -25,3 +27,4 @@ public:
   void move_to(std::pair<int, int> room_location);
   void shoot_at(std::pair<int, int> room_location);
 };
+}

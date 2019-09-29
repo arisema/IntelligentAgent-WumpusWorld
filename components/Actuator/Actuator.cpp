@@ -1,5 +1,9 @@
 #include "Actuator.h"
+
+namespace components{
+
 using namespace std;
+using namespace DataStructures;
 
 /**
  * [Actuator::Actuator initilize the Actuator with the agent_location and agent_direction]
@@ -43,7 +47,7 @@ string Actuator::get_agent_direction()
  *
  * @param decision Decision obtained from inference class infer function
  */
-void Actuator::actuate(DataStructures::Decision decision)
+void Actuator::actuate(Decision decision)
 {
     if(decision.shoot_at != Null){
       shoot_at(decision.shoot_at);
@@ -97,6 +101,7 @@ void Actuator::move_to(pair<int, int> room_location)
 
   pair<int, int> updated_agent_location;
   string updated_agent_direction;
+    // if room direction and agent direction is the same
   if(room_direction == agent_direction) {
     updated_agent_location = Actuator.move_forward();
     // if room direction is in the top
@@ -199,4 +204,5 @@ void Actuator::shoot_at(pair<int, int> wumpus_location)
     Actuator.shoot();
   }
   set_agent_direction(updated_agent_direction);
+}
 }
