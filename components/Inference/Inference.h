@@ -30,5 +30,6 @@ class Inference
     std::pair<int, int> find_possible_move(std::pair<int, int> current_room);
     DataStructures::Decision infer(std::pair<int, int> current_room);
 };
+
 }
 #endif
