@@ -48,6 +48,19 @@ vector<pair<int, int>> Inference::get_adjacent_rooms(pair<int, int> current_room
   return adjacent_rooms;
 }
 
+vector<pair<int, int>> Inference::get_adjacent_visited_rooms(pair<int, int> current_room)
+{
+  vector<pair<int, int>> adjacent_visited_rooms;
+  vector<pair<int, int>> adjacent_visited_rooms_candidates = get_adjacent_rooms(current_room);
+  for(auto itr = adjacent_visited_rooms_candidates.begin(); itr < adjacent_visited_rooms_candidates.end(); itr++) {
+    if(current_kb.get_information_visited(*itr)){
+      adjacent_visited_rooms.push_back(*itr);
+    }
+  }
+
+  return adjacent_visited_rooms;
+}
+
 /**
  * [Inference::find_possible_move find the possible move base on the knowledgebase of the rooms.]
  * @param current_room [current room position in pair<int, int> format]
@@ -96,6 +109,51 @@ pair<int, int> Inference::find_possible_move(pair<int, int> current_room)
   return selected_room;
 }
 
+bool Inference::infer_wumpus(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+  vector<pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(current_room);
+
+  bool conclusion = p_hist.at(adjacent_visited_rooms[0]).stench;
+  for(auto itr = adjacent_visited_rooms.begin() + 1; itr < adjacent_visited_rooms.end(); itr++){
+    conclusion = conclusion && p_hist.at(adjacent_visited_rooms[itr]).stench;
+  }
+  return conclusion;
+}
+
+bool Inference::infer_not_wumpus(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+  vector<pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(current_room);
+
+  bool conclusion = !p_hist.at(adjacent_visited_rooms[0]).stench;
+  for(auto itr = adjacent_visited_rooms.begin() + 1; itr < adjacent_visited_rooms.end(); itr++){
+    conclusion = conclusion || !p_hist.at(adjacent_visited_rooms[itr]).stench;
+  }
+  return conclusion;
+}
+
+bool Inference::infer_pit(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+  vector<pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(current_room);
+
+  bool conclusion = p_hist.at(adjacent_visited_rooms[0]).breeze;
+  for(auto itr = adjacent_visited_rooms.begin() + 1; itr < adjacent_visited_rooms.end(); itr++){
+    conclusion = conclusion && p_hist.at(adjacent_visited_rooms[itr]).breeze;
+  }
+  return conclusion;
+}
+
+bool Inference::infer_not_pit(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+  vector<pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(current_room);
+
+  bool conclusion = !p_hist.at(adjacent_visited_rooms[0]).breeze;
+  for(int i = 1; i < adjacent_visited_rooms.size(); i++){
+    conclusion = conclusion || !p_hist.at(adjacent_visited_rooms[i]).breeze;
+  }
+  return conclusion;
+}
+
+bool Inference::infer_gold(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+  return p_hist.at(current_room).glitter;
+}
+
+
 /**
  * [Inference::infer infer response from the given knowledgebase]
  * @param  current_room [current room position in pair<int, int> format]
@@ -103,75 +161,34 @@ pair<int, int> Inference::find_possible_move(pair<int, int> current_room)
  */
 Decision Inference::infer(pair<int, int> current_room)
 {
-  std::map<std::pair<int, int>, DataStructures::Knowledge> data = current_kb.get_data();
-  Knowledge room_data = current_kb.get_room_information(current_room);
+  std::map<std::pair<int, int>, DataStructures::Knowledge> p_hist = current_kb.get_data();
   vector<pair<int, int>> adjacent_rooms = get_adjacent_rooms(current_room);
 
   Decision decision;
-
-  // if there is no stench and no breeze
-  if(!room_data.stench && !room_data.breeze) {
-    for(auto itr = adjacent_rooms.begin(); itr < adjacent_rooms.end(); itr++){
-        current_kb.change_information_ok(*itr, true);
-    }
-  // if there is stench
-  }else if(room_data.stench) {
-    for(auto itr = adjacent_rooms.begin(); itr < adjacent_rooms.end(); itr++){
-      Knowledge adjacent_room_data = current_kb.get_room_information(*itr);
-      bool room_is_ok = adjacent_room_data.ok;
-      bool room_has_possible_wumpes = adjacent_room_data.possible_wumpus;
-      bool room_has_wumpes = adjacent_room_data.wumpus;
-      if(!room_is_ok && !room_has_possible_wumpes && !room_has_wumpes) {
-        current_kb.change_information_possible_wumpus(*itr, true);
-      }else if(room_has_possible_wumpes) {
-        current_kb.change_information_wumpus(*itr, true);
-        current_kb.change_information_possible_wumpus(*itr, false);
-        pair<int, int> wumpus_room = *itr;
-        decision.shoot_at = wumpus_room;
-      }else {
-        continue;
-      }
-    }
-  // if there is breeze
-  }else if(room_data.breeze) {
-    for(auto itr = adjacent_rooms.begin(); itr < adjacent_rooms.end(); itr++){
-      bool room_is_ok = current_kb.get_room_information(*itr).ok;
-      bool room_has_possible_pit = current_kb.get_room_information(*itr).possible_pit;
-      bool room_has_pit = current_kb.get_room_information(*itr).pit;
-      if(!room_is_ok && !room_has_possible_pit && !room_has_pit) {
-          current_kb.change_information_possible_pit(*itr, true);
-      }else if(room_has_possible_pit) {
-          current_kb.change_information_pit(*itr, true);
-          current_kb.change_information_possible_pit(*itr, false);
-      }else{
-        continue;
-      }
-    }
-  // if there is stench and breeze
-  }else {
-    for(auto itr = adjacent_rooms.begin(); itr < adjacent_rooms.end(); itr++) {
-      bool room_is_ok = current_kb.get_information_ok(*itr);
-      bool room_has_possible_wumpes = current_kb.get_information_possible_wumpus(*itr);
-      bool room_has_possible_pit = current_kb.get_information_possible_pit(*itr);
-      if(!room_is_ok && !room_has_possible_wumpes && !room_has_possible_pit) {
-          current_kb.change_information_possible_wumpus(*itr, true);
-          current_kb.change_information_possible_pit(*itr, true);
-      }else if(room_has_possible_wumpes) {
-          current_kb.change_information_wumpus(*itr, true);
-      }else if(room_has_possible_pit) {
-          current_kb.change_information_pit(*itr, true);
-      }else {
-        continue;
-      }
+  for(int i = 0; i < adjacent_rooms.size(); i++){
+    if(infer_wumpus(p_hist, adjacent_rooms[i])){
+      p_hist.at(adjacent_rooms[i]).wumpus = true;
+      decision.shoot_at = adjacent_rooms[i];
+    }else if(infer_gold(p_hist, adjacent_rooms[i])){
+      p_hist.at(adjacent_rooms[i]).gold = true;
+      decision.grab = adjacent_rooms[i];
+    }else if(infer_not_wumpus(p_hist, adjacent_rooms[i]) && infer_not_pit(p_hist, adjacent_rooms[i])){
+      p_hist.at(adjacent_rooms[i]).ok = true;
+    }else{
+      continue;
     }
   }
 
   pair<int, int> selected_room = find_possible_move(current_room);
+  decision.move_to = selected_room;
 
   current_kb.change_information_visited(current_room, true);
 
-  decision.move_to = selected_room;
-
   return decision;
 }
+}
+
+int main(int argc, char const *argv[]) {
+  std::cout<<"hello world\n";
+  return 0;
 }
