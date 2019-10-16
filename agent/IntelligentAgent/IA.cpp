@@ -8,7 +8,8 @@ namespace agent{
 using namespace DataStructures;
 
 IntelligentAgent::IntelligentAgent(){
-    ;
+    components::Sensor ia_sensor = components::Sensor(ia_kb);
+    components::Inference ia_inferer = components::Inference(ia_kb);
 }
 // Action IntelligentAgent::go(Information information)
 // {
