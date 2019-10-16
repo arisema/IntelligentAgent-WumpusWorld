@@ -14,8 +14,8 @@ class IntelligentAgent
         
         // playground ia_playground;
         components::KnowledgeBase ia_kb;
-        components::Sensor ia_sensor = components::Sensor(ia_kb);
-        components::Inference ia_inferer = components::Inference(ia_kb);
+        components::Sensor ia_sensor;
+        components::Inference ia_inferer;
         components::Actuator ia_actuator;
     public:
         IntelligentAgent();

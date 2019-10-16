@@ -97,10 +97,45 @@ Decision Inference::infer(std::pair<int, int> current_room)
   // get_adjacent_rooms(make_pair(-1,-1));
   // get_adjacent_rooms(make_pair(4,4));
   rule_matching(current_room);
+  check_equivalence(std::make_pair(1,1), DataStructures::constraint::wumpus);
   return d;
 }
-
+// enum class constraintType{
+//   wumpus,
+//   breeze,
+//   stench,
+//   glitter,
+//   pit
+// };
+// struct constraint{
+//     bool constra = false,
+//     pit = false
+// };
+// std::set<std::pair<int,int>, DataStructures::constraint> generateModel(DataStructures::constraint rule_constraint){
+//     std::set<std::pair<int,int>, DataStructures::constraint> constraint;
+//     return
+// }
+/**
+ * @brief Checks the equivalence of contraints of the model with the data stored in the knowledgebase
+ * 
+ * @param room Room that the constraint will be checked against
+ * @param constraint Constraint that will be checked for validity in the knowlegebase
+ * @return true Specified constraint is in congruity with data stored in the knowledgebase
+ * @return false Specified constraint is not in conngruity with data stored in the knowledgebase
+ */
+bool Inference::check_constraint(std::pair<int, int> room, DataStructures::constraint, DataStructures::model generated_model){
+    // return current_kb.get_specific_percept_info(room, constraint) == generated_model.get_specific_percept_info(room, constraint)
+    return current_kb.get_specific_percept_info(room, constraint) == generated_model.get_specific_percept_info(room, constraint);
+    // return true;
+}
 bool infer_wumpus(std::pair<int, int> room){
+    // PH(position, value) == Rule(position, value) i.e check equivalence of percepts(breeze, stench, etc) in PH (Knowledgebase) with generated_model
+    
+    DataStructures::model wumpus_model = DataStructures::Model.generate_model(room, DataStructures::Rule::Wumpus);
+    
+    for(DataStructures::Room : model.keys??? ){
+        bool status = check_constraint(room, DataStructures::constraint::breeze, wumpus_model);
+    }
     
     return true;
 }
