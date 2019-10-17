@@ -1,3 +1,6 @@
+#ifndef  Actuator_H
+#define Actuator_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,7 +8,7 @@
 #include "../../utilities/DataStructures.h"
 
 namespace components{
-  
+
 class Actuator
 {
 private:
@@ -21,10 +24,11 @@ public:
   std::string get_agent_direction();
   void set_agent_direction(std::string agent_direction);
 
-  void actuate(DataStructures::Decision decision);
-
   std::string get_room_direction(std::pair<int, int> room_location);
   void move_to(std::pair<int, int> room_location);
   void shoot_at(std::pair<int, int> room_location);
+
+  void actuate(DataStructures::Decision decision);
 };
 }
+#endif

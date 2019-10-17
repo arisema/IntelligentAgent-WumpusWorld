@@ -42,24 +42,6 @@ string Actuator::get_agent_direction()
 {
   return Actuator::agent_direction;
 }
-/**
- * @brief A wrapper function that will navigate based on obtained decisions
- *
- * @param decision Decision obtained from inference class infer function
- */
-void Actuator::actuate(Decision decision)
-{
-    if(decision.shoot_at != Null){
-      shoot_at(decision.shoot_at);
-    }else if(decision.move_to != Null) {
-      move_to(decision.move_to);
-    }else if(decision.shoot_at != Null && decision.shoot_at != Null){
-      shoot_at(decision.shoot_at);
-      move_to(decision.move_to);
-    }else{
-
-    }
-}
 
 /**
  * [set_agent_direction setter for agent_direction]
@@ -204,5 +186,25 @@ void Actuator::shoot_at(pair<int, int> wumpus_location)
     Actuator.shoot();
   }
   set_agent_direction(updated_agent_direction);
+}
+
+
+/**
+ * @brief A wrapper function that will navigate based on obtained decisions
+ *
+ * @param decision Decision obtained from inference class infer function
+ */
+void Actuator::actuate(Decision decision)
+{
+    if(decision.shoot_at.first != NULL){
+      shoot_at(decision.shoot_at);
+    }else if(decision.move_to.first != NULL) {
+      move_to(decision.move_to);
+    }else if(decision.shoot_at.first != NULL && decision.move_to.first != NULL){
+      shoot_at(decision.shoot_at);
+      move_to(decision.move_to);
+    }else{
+
+    }
 }
 }
