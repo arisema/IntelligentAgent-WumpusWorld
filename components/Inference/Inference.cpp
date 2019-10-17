@@ -1,4 +1,5 @@
 #include "Inference.h"
+#include <iostream>
 
 
 namespace components{

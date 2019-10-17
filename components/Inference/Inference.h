@@ -41,5 +41,6 @@ class Inference
 
     DataStructures::Decision infer(std::pair<int, int> current_room);
 };
+
 }
 #endif
