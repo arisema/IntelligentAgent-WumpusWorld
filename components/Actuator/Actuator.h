@@ -12,11 +12,12 @@ namespace components{
 class Actuator
 {
 private:
+  DataStructures::Decision decision;
   std::pair<int, int> agent_location;
   std::string agent_direction;
 
 public:
-  Actuator(std::pair<int, int> agent_location, std::string agent_direction);
+  Actuator(DataStructures::Decision decision, std::pair<int, int> agent_location, std::string agent_direction);
 
   std::pair<int, int> get_agent_location();
   void set_agent_location(std::pair<int, int>);
@@ -28,7 +29,7 @@ public:
   void move_to(std::pair<int, int> room_location);
   void shoot_at(std::pair<int, int> room_location);
 
-  void actuate(DataStructures::Decision decision);
+  void actuate();
 };
 }
 #endif

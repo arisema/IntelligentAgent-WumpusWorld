@@ -10,8 +10,9 @@ using namespace DataStructures;
  * @param agent_location  [current location of the agent in pair<int, int> format]
  * @param agent_direction [current direction of the agent in pair<int, int> format]
  */
-Actuator::Actuator(pair<int, int> agent_location, string agent_direction)
+Actuator::Actuator(DataStructures::Decision decision, pair<int, int> agent_location, string agent_direction)
 {
+  Actuator::decision = decision;
   Actuator::agent_location = agent_location;
   Actuator::agent_direction = agent_direction;
 }
@@ -194,7 +195,7 @@ void Actuator::shoot_at(pair<int, int> wumpus_location)
  *
  * @param decision Decision obtained from inference class infer function
  */
-void Actuator::actuate(Decision decision)
+void Actuator::actuate()
 {
     if(decision.shoot_at.first != NULL){
       shoot_at(decision.shoot_at);
