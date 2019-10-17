@@ -9,6 +9,7 @@ using namespace std;
 Inference::Inference(KnowledgeBase current_kb)
 {
   Inference::current_kb = current_kb;
+  Inference::p_hist = Inference::current_kb.get_data();
 }
 
 /**
@@ -109,47 +110,47 @@ pair<int, int> Inference::find_possible_move(pair<int, int> current_room)
   return selected_room;
 }
 
-bool Inference::infer_wumpus(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+bool Inference::infer_wumpus(pair<int, int> current_room){
   vector<pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(current_room);
 
   bool conclusion = p_hist.at(adjacent_visited_rooms[0]).stench;
   for(auto itr = adjacent_visited_rooms.begin() + 1; itr < adjacent_visited_rooms.end(); itr++){
-    conclusion = conclusion && p_hist.at(adjacent_visited_rooms[itr]).stench;
+    conclusion = conclusion && p_hist.at(*itr).stench;
   }
   return conclusion;
 }
 
-bool Inference::infer_not_wumpus(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+bool Inference::infer_not_wumpus(pair<int, int> current_room){
   vector<pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(current_room);
 
   bool conclusion = !p_hist.at(adjacent_visited_rooms[0]).stench;
   for(auto itr = adjacent_visited_rooms.begin() + 1; itr < adjacent_visited_rooms.end(); itr++){
-    conclusion = conclusion || !p_hist.at(adjacent_visited_rooms[itr]).stench;
+    conclusion = conclusion || !p_hist.at(*itr).stench;
   }
   return conclusion;
 }
 
-bool Inference::infer_pit(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+bool Inference::infer_pit(pair<int, int> current_room){
   vector<pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(current_room);
 
   bool conclusion = p_hist.at(adjacent_visited_rooms[0]).breeze;
   for(auto itr = adjacent_visited_rooms.begin() + 1; itr < adjacent_visited_rooms.end(); itr++){
-    conclusion = conclusion && p_hist.at(adjacent_visited_rooms[itr]).breeze;
+    conclusion = conclusion && p_hist.at(*itr).breeze;
   }
   return conclusion;
 }
 
-bool Inference::infer_not_pit(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+bool Inference::infer_not_pit(pair<int, int> current_room){
   vector<pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(current_room);
 
   bool conclusion = !p_hist.at(adjacent_visited_rooms[0]).breeze;
-  for(int i = 1; i < adjacent_visited_rooms.size(); i++){
-    conclusion = conclusion || !p_hist.at(adjacent_visited_rooms[i]).breeze;
+  for(auto itr = adjacent_visited_rooms.begin() + 1; itr < adjacent_visited_rooms.end(); itr++){
+    conclusion = conclusion || !p_hist.at(*itr).breeze;
   }
   return conclusion;
 }
 
-bool Inference::infer_gold(map<pair<int, int>, DataStructures::Knowledge> p_hist, pair<int, int> current_room){
+bool Inference::infer_gold(pair<int, int> current_room){
   return p_hist.at(current_room).glitter;
 }
 
@@ -161,18 +162,17 @@ bool Inference::infer_gold(map<pair<int, int>, DataStructures::Knowledge> p_hist
  */
 Decision Inference::infer(pair<int, int> current_room)
 {
-  std::map<std::pair<int, int>, DataStructures::Knowledge> p_hist = current_kb.get_data();
   vector<pair<int, int>> adjacent_rooms = get_adjacent_rooms(current_room);
 
   Decision decision;
   for(int i = 0; i < adjacent_rooms.size(); i++){
-    if(infer_wumpus(p_hist, adjacent_rooms[i])){
+    if(infer_wumpus(adjacent_rooms[i])){
       p_hist.at(adjacent_rooms[i]).wumpus = true;
       decision.shoot_at = adjacent_rooms[i];
-    }else if(infer_gold(p_hist, adjacent_rooms[i])){
+    }else if(infer_gold(adjacent_rooms[i])){
       p_hist.at(adjacent_rooms[i]).gold = true;
       decision.grab = adjacent_rooms[i];
-    }else if(infer_not_wumpus(p_hist, adjacent_rooms[i]) && infer_not_pit(p_hist, adjacent_rooms[i])){
+    }else if(infer_not_wumpus(adjacent_rooms[i]) && infer_not_pit(adjacent_rooms[i])){
       p_hist.at(adjacent_rooms[i]).ok = true;
     }else{
       continue;
@@ -186,9 +186,4 @@ Decision Inference::infer(pair<int, int> current_room)
 
   return decision;
 }
-}
-
-int main(int argc, char const *argv[]) {
-  std::cout<<"hello world\n";
-  return 0;
 }

@@ -23,6 +23,7 @@ class Inference
     std::vector<std::pair<int, int>> adjacent_rooms;
     std::pair<int, int> wumpus_room;
     KnowledgeBase current_kb;
+    std::map<std::pair<int, int>, DataStructures::Knowledge> p_hist;
 
   public:
     Inference(KnowledgeBase current_kb);
@@ -32,11 +33,11 @@ class Inference
     std::vector<std::pair<int, int>> get_adjacent_visited_rooms(std::pair<int, int> current_room);
     std::pair<int, int> find_possible_move(std::pair<int, int> current_room);
 
-    bool infer_wumpus(std::map<std::pair<int, int>, DataStructures::Knowledge> p_hist, std::pair<int, int> current_room);
-    bool infer_not_wumpus(std::map<std::pair<int, int>, DataStructures::Knowledge> p_hist, std::pair<int, int> current_room);
-    bool infer_pit(std::map<std::pair<int, int>, DataStructures::Knowledge> p_hist, std::pair<int, int> current_room);
-    bool infer_not_pit(std::map<std::pair<int, int>, DataStructures::Knowledge> p_hist, std::pair<int, int> current_room);
-    bool infer_gold(std::map<std::pair<int, int>, DataStructures::Knowledge> p_hist, std::pair<int, int> current_room);
+    bool infer_wumpus(std::pair<int, int> current_room);
+    bool infer_not_wumpus(std::pair<int, int> current_room);
+    bool infer_pit(std::pair<int, int> current_room);
+    bool infer_not_pit(std::pair<int, int> current_room);
+    bool infer_gold(std::pair<int, int> current_room);
 
     DataStructures::Decision infer(std::pair<int, int> current_room);
 };
