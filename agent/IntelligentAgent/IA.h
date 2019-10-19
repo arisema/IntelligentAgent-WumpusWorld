@@ -19,7 +19,8 @@ class IntelligentAgent
         components::Actuator ia_actuator;
     public:
         IntelligentAgent();
-        void go();
+        DataStructures::Decision decision;
+        DataStructures::Decision go(std::pair<int,int> agent_location, DataStructures::Percepts room_perceptions);
 };
 
 }

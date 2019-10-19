@@ -16,6 +16,13 @@ bool is_valid_position(int i, int j)
   else return false;
 }
 
+/**
+ * @brief Generates an inference model for the inference. Generates the constraints based on specified rule.
+ * 
+ * @param room Room that model will be generated for.
+ * @param rule The rule whose constraints will be defined in the model
+ * @return model 
+ */
 model Model::generate_model(Room room, Rule rule){
     model required_model;
     Room left = std::make_pair(room.first-1, room.second);
