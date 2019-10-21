@@ -25,7 +25,7 @@ Inference::Inference(KnowledgeBase current_kb)
  * @param  j [column of a given position]
  * @return   [bool]
  */
-bool is_valid_position(int i, int j)
+bool Inference::is_valid_position(int i, int j)
 {
   // this function is not generic enough to handle a grid that's not 4X4, needs improvement
   if((i >= 0 && i <= 3) && (j >= 0 && j <= 3)) return true;
@@ -37,7 +37,7 @@ bool is_valid_position(int i, int j)
  * @param current_room [piar<int, int> current room position in tumple format]
  * @return [std::vector<pair<int, int>> valid adjacent rooms]
  */
-std::vector<std::pair<int, int>> get_adjacent_rooms(std::pair<int, int> room)
+std::vector<std::pair<int, int>> Inference::get_adjacent_rooms(std::pair<int, int> room)
 {
     std::vector<std::pair<int, int>> adjacent_rooms;
     std::vector<std::pair<int, int>> adjacent_rooms_candidates;
