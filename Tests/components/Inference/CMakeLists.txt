@@ -1,0 +1,9 @@
+#project(IntelligentAgent-tests)
+cmake_minimum_required(VERSION 3.10)
+
+add_library(InferenceUnittest_lib STATIC InferenceUnittest.cpp InferenceUnittest.h)
+target_link_libraries(InferenceUnittest_lib Utility_lib KnowledgeBase_lib Sensor_lib Inference_lib Actuator_lib)
+target_include_directories(InferenceUnittest_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_executable(InferenceUnittest InferenceUnittest.cpp)
+target_link_libraries(InferenceUnittest InferenceUnittest_lib)

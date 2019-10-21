@@ -22,7 +22,7 @@ Inference::Inference(KnowledgeBase& kb) :current_kb(kb)
  * @param  j [column of a given position]
  * @return   [bool]
  */
-bool is_valid_position(int i, int j)
+bool Inference::is_valid_position(int i, int j)
 {
   // this function is not generic enough to handle a grid that's not 4X4, needs improvement
   if((i >= 0 && i <= 3) && (j >= 0 && j <= 3)) return true;
@@ -30,11 +30,11 @@ bool is_valid_position(int i, int j)
 }
 
 /**
- * [Inference::get_adjacent_rooms find valid adjacent rooms of the current room]
- * @param current_room [piar<int, int> current room position in tumple format]
- * @return [vector<pair<int, int>> valid adjacent rooms]
- */
-std::set<std::pair<int, int>> get_adjacent_rooms(std::pair<int, int> room)
+//  * [Inference::get_adjacent_rooms find valid adjacent rooms of the current room]
+//  * @param current_room [piar<int, int> current room position in tumple format]
+//  * @return [vector<pair<int, int>> valid adjacent rooms]
+//  */
+std::set<std::pair<int, int>> Inference::get_adjacent_rooms(std::pair<int, int> room)
 {
     std::set<std::pair<int, int>> adjacent_rooms;
     std::vector<std::pair<int, int>> adjacent_rooms_candidates;
@@ -52,11 +52,11 @@ std::set<std::pair<int, int>> get_adjacent_rooms(std::pair<int, int> room)
     return adjacent_rooms;
 }
 
-/**
- * [Inference::infer infer response from the given knowledgebase]
- * @param  current_room [current room position in pair<int, int> format]
- * @return              [response which contain the infered action and an updated knowledgebase]
- */
+// /**
+//  * [Inference::infer infer response from the given knowledgebase]
+//  * @param  current_room [current room position in pair<int, int> format]
+//  * @return              [response which contain the infered action and an updated knowledgebase]
+//  */
 DataStructures::Decision Inference::infer(std::pair<int, int> current_room)
 {
   // model: <room> bool value, <room> bool value, <room> bool value

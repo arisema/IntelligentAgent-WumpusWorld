@@ -1,7 +1,7 @@
 #include "../../../components/Inference/Inference.h"
 #include "../../../components/KnowledgeBase/KB.h"
 #include <tuple>
-#include <vector>
+#include <set>
 #include <cxxtest/TestSuite.h>
 
 using namespace std;
@@ -15,7 +15,6 @@ private:
 public:
     void test_valid_cases(void)
     {
-      inference.is_valid_position(1, 1);
         TS_ASSERT_EQUALS(true, inference.is_valid_position(0, 0));
         TS_ASSERT_EQUALS(true, inference.is_valid_position(0, 2));
         TS_ASSERT_EQUALS(true, inference.is_valid_position(2, 2));
@@ -31,41 +30,41 @@ public:
     }
 };
 
-// class get_adjacent_rooms : public CxxTest::TestSuite
-// {
-// private:
-//     components::KnowledgeBase current_kb = components::KnowledgeBase();
-//     components::Inference inference = components::Inference(current_kb);
-//
-// public:
-//     void valid_adjacent_rooms(void)
-//     {
-//
-//         vector<pair<int, int>>  adjacent_rooms1;
-//         adjacent_rooms1.push_back(make_pair(1, 0));
-//         adjacent_rooms1.push_back(make_pair(0, 1));
-//
-//         vector<pair<int, int>> adjacent_rooms2;
-//         adjacent_rooms2.push_back(make_pair(1, 2));
-//         adjacent_rooms2.push_back(make_pair(0, 1));
-//         adjacent_rooms2.push_back(make_pair(0, 3));
-//
-//         vector<pair<int, int>> adjacent_rooms3;
-//         adjacent_rooms3.push_back(make_pair(3, 2));
-//         adjacent_rooms3.push_back(make_pair(1, 2));
-//         adjacent_rooms3.push_back(make_pair(2, 1));
-//         adjacent_rooms3.push_back(make_pair(2, 3));
-//
-//         vector<pair<int, int>> adjacent_rooms4;
-//         adjacent_rooms4.push_back(make_pair(2, 0));
-//         adjacent_rooms4.push_back(make_pair(3, 1));
-//
-//         TS_ASSERT_EQUALS(adjacent_rooms1, inference.get_adjacent_rooms(make_pair(0, 0)));
-//         TS_ASSERT_EQUALS(adjacent_rooms2, inference.get_adjacent_rooms(make_pair(0, 2)));
-//         TS_ASSERT_EQUALS(adjacent_rooms3, inference.get_adjacent_rooms(make_pair(2, 2)));
-//         TS_ASSERT_EQUALS(adjacent_rooms4, inference.get_adjacent_rooms(make_pair(3, 0)));
-//     }
-// };
+class get_adjacent_rooms : public CxxTest::TestSuite
+{
+private:
+    components::KnowledgeBase current_kb = components::KnowledgeBase();
+    components::Inference inference = components::Inference(current_kb);
+
+public:
+    void valid_adjacent_rooms(void)
+    {
+
+        set<pair<int, int>>  adjacent_rooms1;
+        adjacent_rooms1.insert(make_pair(1, 0));
+        adjacent_rooms1.insert(make_pair(0, 1));
+
+        set<pair<int, int>> adjacent_rooms2;
+        adjacent_rooms2.insert(make_pair(1, 2));
+        adjacent_rooms2.insert(make_pair(0, 1));
+        adjacent_rooms2.insert(make_pair(0, 3));
+
+        set<pair<int, int>> adjacent_rooms3;
+        adjacent_rooms3.insert(make_pair(3, 2));
+        adjacent_rooms3.insert(make_pair(1, 2));
+        adjacent_rooms3.insert(make_pair(2, 1));
+        adjacent_rooms3.insert(make_pair(2, 3));
+
+        set<pair<int, int>> adjacent_rooms4;
+        adjacent_rooms4.insert(make_pair(2, 0));
+        adjacent_rooms4.insert(make_pair(3, 1));
+
+        TS_ASSERT_EQUALS(adjacent_rooms1, inference.get_adjacent_rooms(make_pair(0, 0)));
+        TS_ASSERT_EQUALS(adjacent_rooms2, inference.get_adjacent_rooms(make_pair(0, 2)));
+        TS_ASSERT_EQUALS(adjacent_rooms3, inference.get_adjacent_rooms(make_pair(2, 2)));
+        TS_ASSERT_EQUALS(adjacent_rooms4, inference.get_adjacent_rooms(make_pair(3, 0)));
+    }
+};
 //
 // class find_possible_move : public CxxTest::TestSuite
 // {
@@ -90,7 +89,7 @@ public:
 //         TS_ASSERT_EQUALS(make_pair(1, 1), inference.find_possible_move(make_pair(3, 3)));
 //         TS_ASSERT_EQUALS(make_pair(1, 1), inference.find_possible_move(make_pair(4, 1)));
 //     }
-//
+
 //     void possible_move_case2(void)
 //     {
 //         components::KnowledgeBase current_kb = components::KnowledgeBase();

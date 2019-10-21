@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="IntelligentAgent-WumpusWorld"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\utilities\;CMake Files\components\;CMake Files\components\KnowledgeBase\;CMake Files\components\Sensor\;CMake Files\components\Inference\;CMake Files\components\Actuator\;CMake Files\agent\;CMake Files\agent\IntelligentAgent\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="iaww">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/iaww" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/agent/IntelligentAgent"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 iaww"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="iaww/fast">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/iaww" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/agent/IntelligentAgent"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 iaww/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Utility_lib">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/libUtility_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/Makefile&quot;  VERBOSE=1 Utility_lib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Utility_lib/fast">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/libUtility_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/Makefile&quot;  VERBOSE=1 Utility_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/utilities/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="KnowledgeBase_lib">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/libKnowledgeBase_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/Makefile&quot;  VERBOSE=1 KnowledgeBase_lib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="KnowledgeBase_lib/fast">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/libKnowledgeBase_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/Makefile&quot;  VERBOSE=1 KnowledgeBase_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/KnowledgeBase/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Sensor_lib">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/libSensor_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/Makefile&quot;  VERBOSE=1 Sensor_lib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Sensor_lib/fast">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/libSensor_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/Makefile&quot;  VERBOSE=1 Sensor_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Sensor/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Inference_lib">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/libInference_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/Makefile&quot;  VERBOSE=1 Inference_lib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Inference_lib/fast">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/libInference_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/Makefile&quot;  VERBOSE=1 Inference_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Inference/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Actuator_lib">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/libActuator_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/Makefile&quot;  VERBOSE=1 Actuator_lib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Actuator_lib/fast">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/libActuator_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/Makefile&quot;  VERBOSE=1 Actuator_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/components/Actuator/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="IntelligentAgent_lib">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/libIntelligentAgent_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/agent/IntelligentAgent"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/Makefile&quot;  VERBOSE=1 IntelligentAgent_lib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="IntelligentAgent_lib/fast">
+				<Option output="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/libIntelligentAgent_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/agent/IntelligentAgent"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference"/>
+					<Add directory="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/Makefile&quot;  VERBOSE=1 IntelligentAgent_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/cmake-build-debug/agent/IntelligentAgent/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/agent/IntelligentAgent/IA.cpp">
+			<Option target="IntelligentAgent_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/agent/IntelligentAgent/IA.h">
+			<Option target="IntelligentAgent_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator/Actuator.cpp">
+			<Option target="Actuator_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator/Actuator.h">
+			<Option target="Actuator_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference/Inference.cpp">
+			<Option target="Inference_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference/Inference.h">
+			<Option target="Inference_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase/KB.cpp">
+			<Option target="KnowledgeBase_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase/KB.h">
+			<Option target="KnowledgeBase_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor/Sensor.cpp">
+			<Option target="Sensor_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor/Sensor.h">
+			<Option target="Sensor_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/main.cpp">
+			<Option target="iaww"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities/Model.cpp">
+			<Option target="Utility_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities/Model.h">
+			<Option target="Utility_lib"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/utilities/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\utilities\"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/KnowledgeBase/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\components\KnowledgeBase\"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Sensor/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\components\Sensor\"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Inference/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\components\Inference\"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/components/Actuator/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\components\Actuator\"/>
+		</Unit>
+		<Unit filename="/home/yonathan/Documents/projects/IntelligentAgent-WumpusWorld/agent/IntelligentAgent/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\agent\IntelligentAgent\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
