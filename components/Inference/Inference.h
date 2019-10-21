@@ -28,9 +28,12 @@ class Inference
 
     bool check_equivalence(std::pair<int, int> room, DataStructures::constraint specific_constraint, DataStructures::model specified_model);
     bool infer_presence(std::pair<int, int> room, DataStructures::Rule character);
-    std::pair<int, int> find_possible_move(std::pair<int, int> current_room);
     DataStructures::Decision rule_matching(std::pair<int, int> room);
   public:
+    bool is_valid_position(int i, int j);
+    std::set<std::pair<int, int>> get_adjacent_rooms(std::pair<int, int> room);
+    std::pair<int, int> find_possible_move(std::pair<int, int> current_room);
+
     Inference(KnowledgeBase& kb);
     DataStructures::Decision infer(std::pair<int, int> current_room);
 };

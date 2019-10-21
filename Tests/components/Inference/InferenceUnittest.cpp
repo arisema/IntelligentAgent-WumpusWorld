@@ -35,7 +35,7 @@ public:
 
 static class TestDescription_suite_is_valid_position_test_invalid_cases : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_is_valid_position_test_invalid_cases() : CxxTest::RealTestDescription( Tests_is_valid_position, suiteDescription_is_valid_position, 25, "test_invalid_cases" ) {}
+ TestDescription_suite_is_valid_position_test_invalid_cases() : CxxTest::RealTestDescription( Tests_is_valid_position, suiteDescription_is_valid_position, 24, "test_invalid_cases" ) {}
  void runTest() { suite_is_valid_position.test_invalid_cases(); }
 } testDescription_suite_is_valid_position_test_invalid_cases;
 

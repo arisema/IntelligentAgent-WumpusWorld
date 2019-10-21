@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/iaww.dir/main.cpp.o  -o iaww agent/IntelligentAgent/libIntelligentAgent_lib.a components/Sensor/libSensor_lib.a components/Inference/libInference_lib.a utilities/libUtility_lib.a components/Actuator/libActuator_lib.a components/KnowledgeBase/libKnowledgeBase_lib.a 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libUtility_lib.a  CMakeFiles/Utility_lib.dir/Model.cpp.o
+/usr/bin/ranlib libUtility_lib.a
