@@ -1,5 +1,4 @@
 #project(IntelligentAgent-components)
-cmake_minimum_required(VERSION 3.10)
 
 add_library(Inference_lib STATIC Inference.cpp Inference.h)
 target_link_libraries(Inference_lib Utility_lib KnowledgeBase_lib)

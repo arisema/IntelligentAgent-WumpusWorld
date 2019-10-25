@@ -16,10 +16,6 @@ namespace components{
 Inference::Inference(KnowledgeBase current_kb)
 {
   Inference::current_kb = current_kb;
-
-  current_kb.change_information_ok(std::make_pair(0, 0), true);
-  current_kb.change_information_ok(std::make_pair(0, 1), true);
-  current_kb.change_information_ok(std::make_pair(1, 0), true);
 }
 
 /**
@@ -59,6 +55,20 @@ std::vector<std::pair<int, int>> Inference::get_adjacent_rooms(std::pair<int, in
     }
     return adjacent_rooms;
 }
+
+std::vector<std::pair<int, int>> Inference::get_adjacent_visited_rooms(std::pair<int, int> room)
+{
+  std::vector<std::pair<int, int>> adjacent_visited_rooms;
+  std::vector<std::pair<int, int>> adjacent_visited_rooms_candidates = get_adjacent_rooms(room);
+
+  for(auto itr : adjacent_visited_rooms_candidates){
+    if(current_kb.get_information_visited(itr)) {
+      adjacent_visited_rooms.push_back(itr);
+    }
+  }
+  return adjacent_visited_rooms;
+}
+
 
 /**
  * [Inference::find_possible_move find the possible move base on the knowledgebase of the rooms.]
@@ -129,11 +139,17 @@ bool Inference::infer_wumpus(std::pair<int, int> room){
 }
 
 bool Inference::infer_not_wumpus(std::pair<int, int> room){
-  std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(room);
-  if(!validate_conclusion(adjacent_rooms)) return false;
+  std::vector<std::pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(room);
+  // if(!validate_conclusion(adjacent_visited_rooms)) return false;
 
-  bool conclusion = !current_kb.get_information_stench(adjacent_rooms[0]);
-  for(auto itr = adjacent_rooms.begin() + 1; itr != adjacent_rooms.end(); itr++){
+  // check if get_information_stench work correctly
+  std::cout<< std::endl;
+  std::cout << "stench at (0, 2) : " << current_kb.get_information_stench(std::make_pair(0, 2)) << std::endl;
+  std::cout << "stench at (1, 1) : " << current_kb.get_information_stench(std::make_pair(1, 1)) << std::endl;
+  std::cout << "stench at (1, 3) : " << current_kb.get_information_stench(std::make_pair(1, 3)) << std::endl;
+
+  bool conclusion = !current_kb.get_information_stench(adjacent_visited_rooms[0]); // todo - error return false for any room
+  for(auto itr = adjacent_visited_rooms.begin() + 1; itr != adjacent_visited_rooms.end(); itr++){
     conclusion = conclusion || !current_kb.get_information_stench(*itr);
   }
   return conclusion;
@@ -151,11 +167,11 @@ bool Inference::infer_pit(std::pair<int, int> room){
 }
 
 bool Inference::infer_not_pit(std::pair<int, int> room){
-  std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(room);
-  if(!validate_conclusion(adjacent_rooms)) return false;
+  std::vector<std::pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(room);
+  // if(!validate_conclusion(adjacent_visited_rooms)) return false;
 
-  bool conclusion = !current_kb.get_information_breeze(adjacent_rooms[0]);
-  for(auto itr = adjacent_rooms.begin() + 1; itr != adjacent_rooms.end(); itr++){
+  bool conclusion = !current_kb.get_information_breeze(adjacent_visited_rooms[0]);
+  for(auto itr = adjacent_visited_rooms.begin() + 1; itr != adjacent_visited_rooms.end(); itr++){
     conclusion = conclusion || !current_kb.get_information_breeze(*itr);;
   }
   return conclusion;
@@ -185,7 +201,6 @@ DataStructures::Decision Inference::infer(std::pair<int, int> current_room)
       current_kb.change_information_wumpus(itr, true);
       decision.decision = DataStructures::movement_decision::shoot_at;
       decision.location = itr;
-      current_kb.change_information_visited(current_room, true);
       return decision;
     }else if(infer_gold(itr)){
       std::cout << "Gold in: (" << itr.first << "," << itr.second << ")" << std::endl;
