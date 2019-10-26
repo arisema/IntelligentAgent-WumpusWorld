@@ -27,15 +27,14 @@ class Inference
     KnowledgeBase current_kb;
 
   public:
-    Inference(KnowledgeBase current_kb);
-    // Inference(KnowledgeBase& kb);
+    Inference(KnowledgeBase& kb);
 
     bool is_valid_position(int i, int j);
     std::vector<std::pair<int, int>> get_adjacent_rooms(std::pair<int, int> current_room);
     std::vector<std::pair<int, int>> get_adjacent_visited_rooms(std::pair<int, int> current_room);
     std::pair<int, int> find_possible_move(std::pair<int, int> current_room);
 
-    bool validate_conclusion(std::vector<std::pair<int, int>> adjacent_rooms);
+    bool validate_conclusion(std::vector<std::pair<int, int>> adjacent_rooms;
 
     bool infer_wumpus(std::pair<int, int> current_room);
     bool infer_not_wumpus(std::pair<int, int> current_room);
