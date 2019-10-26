@@ -34,7 +34,7 @@ class Inference
     std::vector<std::pair<int, int>> get_adjacent_visited_rooms(std::pair<int, int> current_room);
     std::pair<int, int> find_possible_move(std::pair<int, int> current_room);
 
-    bool validate_conclusion(std::vector<std::pair<int, int>> adjacent_rooms;
+    bool validate_conclusion(std::vector<std::pair<int, int>> adjacent_rooms);
 
     bool infer_wumpus(std::pair<int, int> current_room);
     bool infer_not_wumpus(std::pair<int, int> current_room);
