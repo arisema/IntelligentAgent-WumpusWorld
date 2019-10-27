@@ -12,7 +12,7 @@ namespace components{
  *
  * @param kb Knowledgebase object
  */
-Inference::Inference(KnowledgeBase& kb) :current_kb(kb)
+Inference::Inference(KnowledgeBase& kb): current_kb(kb)
 {
   
 }

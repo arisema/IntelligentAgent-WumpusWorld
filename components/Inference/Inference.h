@@ -24,7 +24,7 @@ class Inference
     std::vector<std::pair<int, int>> ok_rooms;
     std::pair<int, int> wumpus_room;
     std::vector<std::pair<int, int>> pit_rooms;
-    KnowledgeBase current_kb;
+    KnowledgeBase& current_kb;
 
   public:
     Inference(KnowledgeBase& kb);

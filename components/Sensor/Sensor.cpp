@@ -42,7 +42,6 @@ using namespace DataStructures;
     {
         Knowledge information = Sensor::percept_to_knowledge(perceptions);
         current_kb.add_into_knowledgebase(room, information);
-
         return current_kb;
     }
 }

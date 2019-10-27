@@ -11,7 +11,6 @@ namespace agent{
 class IntelligentAgent
 {
     private:
-        
         // playground ia_playground;
         components::KnowledgeBase ia_kb;
         components::Sensor ia_sensor = components::Sensor(ia_kb);
