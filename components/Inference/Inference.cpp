@@ -14,7 +14,7 @@ namespace components{
  */
 Inference::Inference(KnowledgeBase& kb): current_kb(kb)
 {
-  
+
 }
 
 /**
@@ -116,8 +116,11 @@ std::pair<int, int> Inference::find_possible_move(std::pair<int, int> current_ro
   return selected_room;
 }
 
-// check the validity of the conclusion
-// or check if there is no sufficient information to decide
+/**
+ * [Inference::validate_conclusion check if there is sufficient information to decide.]
+ * @param adjacent_rooms [list of adjacent rooms of a given room. ]
+ * @return [return true if the adjacent rooms are sufficient to decide else false.]
+ */
 bool Inference::validate_conclusion(std::vector<std::pair<int, int>> adjacent_rooms){
   for(auto itr : adjacent_rooms) {
     if(!current_kb.get_information_visited(itr)) return false;
@@ -126,6 +129,11 @@ bool Inference::validate_conclusion(std::vector<std::pair<int, int>> adjacent_ro
 }
 
 
+/**
+ * [Inference::infer_wumpus if there is stench on all the adjacent room, there is wumpus in that room.]
+ * @param  room [a given room]
+ * @return      [return true if wumpus exist else return false.]
+ */
 bool Inference::infer_wumpus(std::pair<int, int> room){
   std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(room);
   if(!validate_conclusion(adjacent_rooms)) return false;
@@ -137,16 +145,16 @@ bool Inference::infer_wumpus(std::pair<int, int> room){
   return conclusion;
 }
 
+/**
+ * [Inference::infer_not_wumpus if there is no stench atleast in one of the adjacent rooms, there is no wumpus in that room.]
+ * @param  room [a given room]
+ * @return      [return true if wumpus doesn't exist else false.]
+ */
 bool Inference::infer_not_wumpus(std::pair<int, int> room){
   std::vector<std::pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(room);
   // if(!validate_conclusion(adjacent_visited_rooms)) return false;
 
-  // check if get_information_stench work correctly
-  std::cout<< std::endl;
-  std::cout << "stench at (0, 2) : " << current_kb.get_information_stench(std::make_pair(0, 2)) << std::endl;
-  std::cout << "stench at (1, 1) : " << current_kb.get_information_stench(std::make_pair(1, 1)) << std::endl;
-  std::cout << "stench at (1, 3) : " << current_kb.get_information_stench(std::make_pair(1, 3)) << std::endl;
-
+  // if(current_kb.get_information_ok(room)) return true;
   bool conclusion = !current_kb.get_information_stench(adjacent_visited_rooms[0]); // todo - error return false for any room
   for(auto itr = adjacent_visited_rooms.begin() + 1; itr != adjacent_visited_rooms.end(); itr++){
     conclusion = conclusion || !current_kb.get_information_stench(*itr);
@@ -154,6 +162,11 @@ bool Inference::infer_not_wumpus(std::pair<int, int> room){
   return conclusion;
 }
 
+/**
+ * [Inference::infer_pit if there is breeze in all adjacent rooms, there is pit in that room]
+ * @param  room [a given room]
+ * @return      [return true if pit exist else return false]
+ */
 bool Inference::infer_pit(std::pair<int, int> room){
   std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(room);
   if(!validate_conclusion(adjacent_rooms)) return false;
@@ -165,10 +178,16 @@ bool Inference::infer_pit(std::pair<int, int> room){
   return conclusion;
 }
 
+/**
+ * [Inference::infer_not_pit if there is no breeze in atleast one of the adjacent rooms, there is pit in that room]
+ * @param  room [a given room]
+ * @return      [return true if pit doesn't exist]
+ */
 bool Inference::infer_not_pit(std::pair<int, int> room){
   std::vector<std::pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(room);
   // if(!validate_conclusion(adjacent_visited_rooms)) return false;
 
+  // if(current_kb.get_information_ok(room)) return true;
   bool conclusion = !current_kb.get_information_breeze(adjacent_visited_rooms[0]);
   for(auto itr = adjacent_visited_rooms.begin() + 1; itr != adjacent_visited_rooms.end(); itr++){
     conclusion = conclusion || !current_kb.get_information_breeze(*itr);;
@@ -176,6 +195,11 @@ bool Inference::infer_not_pit(std::pair<int, int> room){
   return conclusion;
 }
 
+/**
+ * [Inference::infer_gold infer gold if there is glitter in a given room]
+ * @param  room [a given room]
+ * @return      [return true if there is gold else return false.]
+ */
 bool Inference::infer_gold(std::pair<int, int> room){
   return current_kb.get_information_glitter(room);
 }
