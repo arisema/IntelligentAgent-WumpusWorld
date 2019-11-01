@@ -10,8 +10,5 @@ add_subdirectory(components/Inference)
 add_subdirectory(components/Actuator)
 add_subdirectory(agent/IntelligentAgent)
 
-set(iagent main.cpp)
-add_executable(iaww ${iagent})
-
-target_link_libraries(iaww IntelligentAgent_lib)
-
+add_library(iaww INTERFACE)
+target_link_libraries(iaww INTERFACE IntelligentAgent_lib)
