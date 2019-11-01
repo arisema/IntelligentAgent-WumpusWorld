@@ -43,13 +43,9 @@ std::vector<std::pair<int, int>> Inference::get_adjacent_rooms(std::pair<int, in
     adjacent_rooms_candidates.push_back(std::make_pair(room.first - 1, room.second));
     adjacent_rooms_candidates.push_back(std::make_pair(room.first, room.second + 1));
     adjacent_rooms_candidates.push_back(std::make_pair(room.first, room.second - 1));
-
-    // cout << room.first << "," << room.second << ": " << endl;
     for(auto itr : adjacent_rooms_candidates) {
         if(is_valid_position(itr.first, itr.second)) {
-          // adjacent_rooms.insert(itr);
           adjacent_rooms.push_back(itr);
-          // cout << itr.first << "," << itr.second << endl;
         }
     }
     return adjacent_rooms;
@@ -212,7 +208,7 @@ bool Inference::infer_gold(std::pair<int, int> room){
  */
 DataStructures::Decision Inference::infer(std::pair<int, int> current_room)
 {
-  std::cout << "Agent in: (" << current_room.first << "," << current_room.second << ")" << std::endl;
+  // std::cout << "Agent in: (" << current_room.first << "," << current_room.second << ")" << std::endl;
   current_kb.change_information_visited(current_room, true);
 
   std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(current_room);
@@ -220,16 +216,16 @@ DataStructures::Decision Inference::infer(std::pair<int, int> current_room)
   DataStructures::Decision decision;
   for(auto itr : adjacent_rooms){
     if(infer_wumpus(itr)){
-      std::cout << "Wumpus in: (" << itr.first << "," << itr.second << ")" << std::endl;
+      // std::cout << "Wumpus in: (" << itr.first << "," << itr.second << ")" << std::endl;
       current_kb.change_information_wumpus(itr, true);
       decision.decision = DataStructures::movement_decision::shoot_at;
       decision.location = itr;
       return decision;
     }else if(infer_gold(itr)){
-      std::cout << "Gold in: (" << itr.first << "," << itr.second << ")" << std::endl;
+      // std::cout << "Gold in: (" << itr.first << "," << itr.second << ")" << std::endl;
       current_kb.change_information_gold(itr, true);
     }else if(infer_not_wumpus(itr) && infer_not_pit(itr)){
-      std::cout << "Ok_room in: (" << itr.first << "," << itr.second << ")" << std::endl;
+      // std::cout << "Ok_room in: (" << itr.first << "," << itr.second << ")" << std::endl;
       current_kb.change_information_ok(itr, true);
     }else{
       continue;
