@@ -38,3 +38,9 @@ cmake-build-debug/
 *.exe
 *.out
 *.app
+
+# Atom
+.idea/
+
+# cmake
+cmake-build-debug/
