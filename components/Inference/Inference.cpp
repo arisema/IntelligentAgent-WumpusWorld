@@ -5,13 +5,14 @@
 namespace components{
 
 // using namespace DataStructures;
+// using namespace std;
 
 /**
  * @brief Construct a new Inference:: Inference object
- * 
+ *
  * @param kb Knowledgebase object
  */
-Inference::Inference(KnowledgeBase& kb) :current_kb(kb)
+Inference::Inference(KnowledgeBase& kb): current_kb(kb)
 {
 
 }
@@ -22,7 +23,7 @@ Inference::Inference(KnowledgeBase& kb) :current_kb(kb)
  * @param  j [column of a given position]
  * @return   [bool]
  */
-bool is_valid_position(int i, int j)
+bool Inference::is_valid_position(int i, int j)
 {
   // this function is not generic enough to handle a grid that's not 4X4, needs improvement
   if((i >= 0 && i <= 3) && (j >= 0 && j <= 3)) return true;
@@ -32,11 +33,11 @@ bool is_valid_position(int i, int j)
 /**
  * [Inference::get_adjacent_rooms find valid adjacent rooms of the current room]
  * @param current_room [piar<int, int> current room position in tumple format]
- * @return [vector<pair<int, int>> valid adjacent rooms]
+ * @return [std::vector<pair<int, int>> valid adjacent rooms]
  */
-std::set<std::pair<int, int>> get_adjacent_rooms(std::pair<int, int> room)
+std::vector<std::pair<int, int>> Inference::get_adjacent_rooms(std::pair<int, int> room)
 {
-    std::set<std::pair<int, int>> adjacent_rooms;
+    std::vector<std::pair<int, int>> adjacent_rooms;
     std::vector<std::pair<int, int>> adjacent_rooms_candidates;
     adjacent_rooms_candidates.push_back(std::make_pair(room.first + 1, room.second));
     adjacent_rooms_candidates.push_back(std::make_pair(room.first - 1, room.second));
@@ -46,182 +47,200 @@ std::set<std::pair<int, int>> get_adjacent_rooms(std::pair<int, int> room)
     // cout << room.first << "," << room.second << ": " << endl;
     for(auto itr : adjacent_rooms_candidates) {
         if(is_valid_position(itr.first, itr.second)) {
-          adjacent_rooms.insert(itr);
+          // adjacent_rooms.insert(itr);
+          adjacent_rooms.push_back(itr);
+          // cout << itr.first << "," << itr.second << endl;
         }
     }
     return adjacent_rooms;
 }
 
+std::vector<std::pair<int, int>> Inference::get_adjacent_visited_rooms(std::pair<int, int> room)
+{
+  std::vector<std::pair<int, int>> adjacent_visited_rooms;
+  std::vector<std::pair<int, int>> adjacent_visited_rooms_candidates = get_adjacent_rooms(room);
+
+  for(auto itr : adjacent_visited_rooms_candidates){
+    if(current_kb.get_information_visited(itr)) {
+      adjacent_visited_rooms.push_back(itr);
+    }
+  }
+  return adjacent_visited_rooms;
+}
+
+
+/**
+ * [Inference::find_possible_move find the possible move base on the knowledgebase of the rooms.]
+ * @param current_room [current room position in std::pair<int, int> format]
+ * @return [selected room in std::pair<int, int> format]
+ */
+std::pair<int, int> Inference::find_possible_move(std::pair<int, int> current_room)
+{
+  // todo - calculate_possible_move
+  std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(current_room);
+
+  // possible move candidate base on their priorities
+  std::vector<std::pair<int, int>> possible_move_candidates1;
+  std::vector<std::pair<int, int>> possible_move_candidates2;
+  std::vector<std::pair<int, int>> possible_move_candidates3;
+
+  // possible move which hold on of the prior possible moves
+  std::vector<std::pair<int, int>> possible_move_candidates;
+
+  for(auto itr : adjacent_rooms) {
+    // if the adjacent room is ok and unvisited.
+    if(current_kb.get_information_ok(itr) && !current_kb.get_information_visited(itr)) {
+      possible_move_candidates1.push_back(itr);
+    // if the adjacent room is ok and visited.
+    }else if(current_kb.get_information_ok(itr) && current_kb.get_information_visited(itr)) {
+      possible_move_candidates2.push_back(itr);
+    }else {
+      possible_move_candidates3.push_back(itr);
+    }
+  }
+
+  // assign possible_moves
+  if(possible_move_candidates1.size() > 0){
+    possible_move_candidates = possible_move_candidates1;
+  }else if(possible_move_candidates2.size() > 0){
+    possible_move_candidates = possible_move_candidates2;
+  }else{
+    possible_move_candidates = possible_move_candidates3;
+  }
+
+  // fix the random number generator.
+  srand((int)time(0));
+  int random_number = rand()%possible_move_candidates.size();
+  std::pair<int, int> selected_room = possible_move_candidates[random_number];
+
+  return selected_room;
+}
+
+/**
+ * [Inference::validate_conclusion check if there is sufficient information to decide.]
+ * @param adjacent_rooms [list of adjacent rooms of a given room. ]
+ * @return [return true if the adjacent rooms are sufficient to decide else false.]
+ */
+bool Inference::validate_conclusion(std::vector<std::pair<int, int>> adjacent_rooms){
+  for(auto itr : adjacent_rooms) {
+    if(!current_kb.get_information_visited(itr)) return false;
+  }
+  return true;
+}
+
+
+/**
+ * [Inference::infer_wumpus if there is stench on all the adjacent room, there is wumpus in that room.]
+ * @param  room [a given room]
+ * @return      [return true if wumpus exist else return false.]
+ */
+bool Inference::infer_wumpus(std::pair<int, int> room){
+  std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(room);
+  if(!validate_conclusion(adjacent_rooms)) return false;
+
+  bool conclusion = current_kb.get_information_stench(adjacent_rooms[0]);
+  for(auto itr = adjacent_rooms.begin() + 1; itr != adjacent_rooms.end(); itr++){
+    conclusion = conclusion && current_kb.get_information_stench(*itr);
+  }
+  return conclusion;
+}
+
+/**
+ * [Inference::infer_not_wumpus if there is no stench atleast in one of the adjacent rooms, there is no wumpus in that room.]
+ * @param  room [a given room]
+ * @return      [return true if wumpus doesn't exist else false.]
+ */
+bool Inference::infer_not_wumpus(std::pair<int, int> room){
+  std::vector<std::pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(room);
+  // if(!validate_conclusion(adjacent_visited_rooms)) return false;
+
+  // if(current_kb.get_information_ok(room)) return true;
+  bool conclusion = !current_kb.get_information_stench(adjacent_visited_rooms[0]); // todo - error return false for any room
+  for(auto itr = adjacent_visited_rooms.begin() + 1; itr != adjacent_visited_rooms.end(); itr++){
+    conclusion = conclusion || !current_kb.get_information_stench(*itr);
+  }
+  return conclusion;
+}
+
+/**
+ * [Inference::infer_pit if there is breeze in all adjacent rooms, there is pit in that room]
+ * @param  room [a given room]
+ * @return      [return true if pit exist else return false]
+ */
+bool Inference::infer_pit(std::pair<int, int> room){
+  std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(room);
+  if(!validate_conclusion(adjacent_rooms)) return false;
+
+  bool conclusion = current_kb.get_information_breeze(adjacent_rooms[0]);
+  for(auto itr = adjacent_rooms.begin() + 1; itr != adjacent_rooms.end(); itr++){
+    conclusion = conclusion && current_kb.get_information_breeze(*itr);
+  }
+  return conclusion;
+}
+
+/**
+ * [Inference::infer_not_pit if there is no breeze in atleast one of the adjacent rooms, there is pit in that room]
+ * @param  room [a given room]
+ * @return      [return true if pit doesn't exist]
+ */
+bool Inference::infer_not_pit(std::pair<int, int> room){
+  std::vector<std::pair<int, int>> adjacent_visited_rooms = get_adjacent_visited_rooms(room);
+  // if(!validate_conclusion(adjacent_visited_rooms)) return false;
+
+  // if(current_kb.get_information_ok(room)) return true;
+  bool conclusion = !current_kb.get_information_breeze(adjacent_visited_rooms[0]);
+  for(auto itr = adjacent_visited_rooms.begin() + 1; itr != adjacent_visited_rooms.end(); itr++){
+    conclusion = conclusion || !current_kb.get_information_breeze(*itr);;
+  }
+  return conclusion;
+}
+
+/**
+ * [Inference::infer_gold infer gold if there is glitter in a given room]
+ * @param  room [a given room]
+ * @return      [return true if there is gold else return false.]
+ */
+bool Inference::infer_gold(std::pair<int, int> room){
+  return current_kb.get_information_glitter(room);
+}
+
+
 /**
  * [Inference::infer infer response from the given knowledgebase]
- * @param  current_room [current room position in pair<int, int> format]
+ * @param  current_room [current room position in std::pair<int, int> format]
  * @return              [response which contain the infered action and an updated knowledgebase]
  */
 DataStructures::Decision Inference::infer(std::pair<int, int> current_room)
 {
-  // model: <room> bool value, <room> bool value, <room> bool value
-  // model: wumpus: <room> boolvalue stench
-  //        pit <room> boolvalue breeze
-  // the inference will take current_room and infer wumpus, infer pit, infer okay. All three will have different models
-  // then return detections to Actuator, which will possibly give suggestions on next step to take, i.e Decision
-  // std::vector<deduction, std::set<std::pair<int, int>, bool>> model;
+  std::cout << "Agent in: (" << current_room.first << "," << current_room.second << ")" << std::endl;
+  current_kb.change_information_visited(current_room, true);
 
-  // ----------------- RULE MATCHING -------------
-  // for each adj in adjacentrooms:
-  //      bool w = inferwumpus(adj)
-  //      bool p = inferwumpus(adj)
-  //      if (w) shoot(direction)
-  //      if (p) pitrooms.add(adj)
-  //      if (!w && !p) okrooms.add(adj)
+  std::vector<std::pair<int, int>> adjacent_rooms = get_adjacent_rooms(current_room);
 
-  // inferwumpus(room):
-  //    PH(get_info_sth) |= room.left.sth
-  //    PH(get_info_sth) |= room.right.sth
-  //    PH(get_info_sth) |= room.top.sth
-  //    PH(get_info_sth) |= room.bottom.sth
-
-  // infer(room, sthBoss):
-  //    sth = getModel(sthBoss) //this is where it's at
-  //    PH(get_info_sth) |= room.left.sth
-  //    PH(get_info_sth) |= room.right.sth
-  //    PH(get_info_sth) |= room.top.sth
-  //    PH(get_info_sth) |= room.bottom.sth
-
-  // test
-  // get_adjacent_rooms(make_pair(0,0));
-  // get_adjacent_rooms(make_pair(0,2));
-  // get_adjacent_rooms(make_pair(3,1));
-  // get_adjacent_rooms(make_pair(3,3));
-  // get_adjacent_rooms(make_pair(-1,-1));
-  // get_adjacent_rooms(make_pair(4,4));
-  DataStructures::Decision agent_decision = rule_matching(current_room);
-  
-  if (agent_decision.decision == DataStructures::movement_decision::shoot_at) return agent_decision;
-
-  else if (agent_decision.decision == DataStructures::movement_decision::move_to){
-    agent_decision.location = ok_rooms.back();
-    ok_rooms.pop_back();
-  }
-  return agent_decision;
-}
-
-/**
- * @brief rule matching function that will incorporate infered conclusions into knowledgebase as well as pass on conclusion for next action
- * 
- * @param room 
- */
-DataStructures::Decision Inference::rule_matching(std::pair<int, int> room){
-
-  std::cout << "Agent in: " << room.first << "," << room.second << std::endl;
-
-  std::set<std::pair<int, int>> adjacentRooms = get_adjacent_rooms(room);
-  
-  DataStructures::Decision d;
-
-  for (auto adj : adjacentRooms){
-    
-    // check adjacent rooms for existence of wumpus or pit to figure out an ok room to move to
-    // std::cout << "checking room: " << adj.first << "," << adj.second << std::endl;
-
-    bool wumpus = current_kb.get_information_wumpus(adj);
-    // if the presence of wumpus is not recorded in the adjacent room, perform model based inference to test for presence of wumpus
-    if (!wumpus) wumpus = infer_presence(adj, DataStructures::Rule::Wumpus);
-
-    bool pit = current_kb.get_information_pit(adj);
-    if (!pit) pit = infer_presence(adj, DataStructures::Rule::Pit);
-
-    bool gold = current_kb.get_information_glitter(room);
-
-    if(wumpus){
-        std::cout << "wumpus detected" << std::endl;
-        
-        current_kb.change_information_wumpus(adj, true); // update knowledgebase
-        
-        d.decision = DataStructures::movement_decision::shoot_at;
-        d.location = adj;
-    }
-
-    if(pit){
-        std::cout << "pit detected in: " << adj.first << "," << adj.second << std::endl;
-        
-        current_kb.change_information_pit(adj, true); // update knowledgebase
-        pit_rooms.push_back(adj);
-        
-        d.decision = DataStructures::movement_decision::move_to;   
-    }
-
-    if(!wumpus && !pit){
-        std::cout << "room " << adj.first << "," << adj.second << " is ok" << std::endl;
-        
-        current_kb.change_information_ok(adj, true); // update knowledgebase
-        ok_rooms.push_back(adj);
-
-        d.decision = DataStructures::movement_decision::move_to;
-    }
-    if (gold){
-      std::cout << "Gold Found!" << std::endl;
-      d.decision = DataStructures::movement_decision::move_to;
+  DataStructures::Decision decision;
+  for(auto itr : adjacent_rooms){
+    if(infer_wumpus(itr)){
+      std::cout << "Wumpus in: (" << itr.first << "," << itr.second << ")" << std::endl;
+      current_kb.change_information_wumpus(itr, true);
+      decision.decision = DataStructures::movement_decision::shoot_at;
+      decision.location = itr;
+      return decision;
+    }else if(infer_gold(itr)){
+      std::cout << "Gold in: (" << itr.first << "," << itr.second << ")" << std::endl;
+      current_kb.change_information_gold(itr, true);
+    }else if(infer_not_wumpus(itr) && infer_not_pit(itr)){
+      std::cout << "Ok_room in: (" << itr.first << "," << itr.second << ")" << std::endl;
+      current_kb.change_information_ok(itr, true);
+    }else{
+      continue;
     }
   }
-  return d;
-}
 
-/**
- * @brief Infers the presence of a character such as a wumpus or pit in a room
- * 
- * @param room The room from which will be inferred character exists in it or not.
- * @param character The game character which will be checked for existence.
- * @return true The character exists in the room.
- * @return false The character does not exist in the room.
- */
-bool Inference::infer_presence(std::pair<int, int> room, DataStructures::Rule character){
+  std::pair<int, int> selected_room = find_possible_move(current_room);
+  decision.decision = DataStructures::movement_decision::move_to;
+  decision.location = selected_room;
 
-    // PH(position, value) == Rule(position, value)
-
-    DataStructures::model inference_model;
-    DataStructures::constraint constraint;
-    int counter;
-
-    bool conclusion = false;
-
-    if (character == DataStructures::Rule::Wumpus){
-      inference_model = DataStructures::Model::generate_model(room, DataStructures::Rule::Wumpus);
-      counter = inference_model.size();
-      std::cout << "size" << inference_model.size() << std::endl;
-      constraint = DataStructures::constraint::stench;
-    }
-    else if (character == DataStructures::Rule::Pit){
-      inference_model = DataStructures::Model::generate_model(room, DataStructures::Rule::Pit);
-      counter = inference_model.size()-1;
-      constraint = DataStructures::constraint::breeze;
-    }
-    
-    for (auto rule : inference_model){
-      // std::cout << rule.first.first << "," << rule.first.second << ": " << "breeze: " << rule.second.breeze << " stench: " <<  rule.second.stench << std::endl;
-      std::pair<int, int> model_room = std::make_pair(rule.first.first,rule.first.second);
-      // cross-check equivalence in rooms
-      conclusion = check_equivalence(model_room, constraint, inference_model);
-      if (conclusion) --counter;
-    }
-
-    if (counter != 0) conclusion = false;
-    return conclusion;
-}
-
-/**
- * @brief Checks the equivalence of contraints of the model with the data stored in the knowledgebase
- * 
- * @param room Room that the constraint will be checked against
- * @param constraint Constraint that will be checked for validity in the knowlegebase
- * @return true Specified constraint is in congruity with data stored in the knowledgebase
- * @return false Specified constraint is not in conngruity with data stored in the knowledgebase
- */
-bool Inference::check_equivalence(std::pair<int, int> room, DataStructures::constraint specific_constraint, DataStructures::model specified_model){
-
-    bool is_equivalent = current_kb.get_specific_percept_info(room, specific_constraint) == DataStructures::Model::get_specific_constraint_info(room, specific_constraint, specified_model);
-    // std::cout << "check equiv: " << is_equivalent << std::endl;
-    return is_equivalent;
-
+  return decision;
 }
 
 }
